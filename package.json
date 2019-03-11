@@ -1,0 +1,26 @@
+{
+  "name": "wor-backend",
+  "version": "0.0.1",
+  "description": "Backend and discord bot for WOR tournaments site",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wrockets/backend.git"
+  },
+  "author": "Tyler 'Tyzoid' Dence",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wrockets/backend/issues"
+  },
+  "homepage": "https://github.com/wrockets/backend#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "gql-client": "github:tyzoid/gql-client",
+    "luxon": "^1.11.4",
+    "string-argv": "^0.1.1"
+  }
+}
