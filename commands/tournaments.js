@@ -1,4 +1,5 @@
 const SmashGG = require('../smashgg/smash.js');
+const DT      = require('luxon').DateTime;
 
 function tournamentsCommand(msg, args) {
 	SmashGG.Tournaments({
