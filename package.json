@@ -19,8 +19,8 @@
   "homepage": "https://github.com/wrockets/backend#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "gql-client": "github:tyzoid/gql-client",
     "luxon": "^1.11.4",
+    "silica-graphql-client": "^0.0.1",
     "string-argv": "^0.1.1"
   }
 }
