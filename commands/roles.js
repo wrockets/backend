@@ -3,12 +3,21 @@ const reaction_message_model = require("../models/reaction_roles_message.js")
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://XtratoS:UfTMXyIAxTN6Xr3q@nbot-dg4ad.mongodb.net/rbot?retryWrites=true', { useNewUrlParser: true })
 
+/**
+ * Shows all the roles on all the messages in the server
+ */
 module.exports = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_ROLES")){
         message.reply("You don't have permission").then(async m=>{
             await message.delete()
             return m.delete(15000)
         })
+    }
+    if (args[0] == "help") {
+        let help = new Discord.RichEmbed()
+            .setColor("#FFFF00")
+            .addField("More info", "Shows all the roles on all the messages in the server.")
+        return message.channel.send(help).then(r => r.delete(30000))
     }
     // find all the roles that can be added with reacting on any message in this server
     reaction_message_model.find({

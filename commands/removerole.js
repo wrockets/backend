@@ -4,11 +4,17 @@ const reaction_message_model = require("../models/reaction_roles_message.js")
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://XtratoS:UfTMXyIAxTN6Xr3q@nbot-dg4ad.mongodb.net/rbot?retryWrites=true', { useNewUrlParser: true })
 
+/**
+ * Has 2 usages:
+ * -If a role/emoji is provided, removed that role/emoji from the specified message,
+ * -If no role/emoji provdided, removes all the roles/emojis from the specified message.
+ */
 module.exports = async (bot, message, args) => {
     if (!args[0] || args[0] == "help") {
         let help = new Discord.RichEmbed()
             .setColor("#FFFF00")
             .addField("Usage", "removerole <message_id> <role>/<emoji>")
+            .addField("More info", "*Has 2 usages*:\nIf a role/emoji is provided, removed that role/emoji from the specified message,\n-If no role/emoji provdided, removes all the roles/emojis from the specified message.")
         return message.channel.send(help).then(r => r.delete(30000))
     }
     if(!message.member.hasPermission("MANAGE_ROLES")){

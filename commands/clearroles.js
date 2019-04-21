@@ -3,11 +3,15 @@ const reaction_message_model = require("../models/reaction_roles_message.js")
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://XtratoS:UfTMXyIAxTN6Xr3q@nbot-dg4ad.mongodb.net/rbot?retryWrites=true', { useNewUrlParser: true })
 
+/**
+ * Clears all the roles on any message in the server
+ */
 module.exports = async (bot, message, args) => {
     if (args[0] == "help"){
         let help = new Discord.RichEmbed()
         .setColor("#FFFF00")
         .addField("Usage", "clearroles")
+        .addField("More info", "Clears all the roles on any message in the server.")
         return message.channel.send(help).then(r => r.delete(30000))
     }
     if(!message.member.hasPermission("MANAGE_ROLES")){

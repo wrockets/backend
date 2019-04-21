@@ -3,12 +3,16 @@ const reaction_message_model = require("../models/reaction_roles_message.js")
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://XtratoS:UfTMXyIAxTN6Xr3q@nbot-dg4ad.mongodb.net/rbot?retryWrites=true', { useNewUrlParser: true })
 
+/**
+ * Adds a new role to any message in the server
+ */
 module.exports = async (bot, message, args) => {
     // check for help
     if (!args[2] || args[0] == "help") {
         let help = new Discord.RichEmbed()
             .setColor("#FFFF00")
             .addField("Usage", "addemo <message_id> <emote> <role>")
+            .addField("More info", "Adds a new role to any message in the server.")
         return message.channel.send(help).then(r => r.delete(30000))
     }
     // check if command issuer has perms
