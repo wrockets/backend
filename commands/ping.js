@@ -1,4 +1,4 @@
-function pingCommand(msg, args) {
+function pingCommand(client, msg, args) {
 	msg.reply('pong');
 }
 
