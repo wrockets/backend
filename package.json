@@ -20,6 +20,7 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "luxon": "^1.11.4",
+    "mongoose": "^5.5.2",
     "silica-graphql-client": "^0.0.1",
     "string-argv": "^0.1.1"
   }
