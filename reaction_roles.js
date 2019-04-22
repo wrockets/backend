@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://XtratoS:UfTMXyIAxTN6Xr3q@nbot-dg4ad.mongodb.net/rbot?retryWrites=true', { useNewUrlParser: true })
+const conf = require('./conf.js');
+mongoose.connect(conf.mongodbs, { useNewUrlParser: true })
 const reaction_message_model = require("./models/reaction_roles_message.js")
 
 /**
