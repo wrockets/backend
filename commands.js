@@ -1,21 +1,10 @@
-const tournaments = require('./commands/tournaments.js');
-const ping = require('./commands/ping.js');
-const roles = require('./commands/roles.js');
-const addrole = require('./commands/addrole.js');
-const removerole = require('./commands/removerole.js');
-const clearroles = require('./commands/clearroles.js');
-const makemessage = require('./commands/makemessage.js');
-const editmessage = require('./commands/editmessage.js');
-
-
-
 module.exports = {
-	tournaments,
-	ping,
-	roles,
-	addrole,
-	removerole,
-	clearroles,
-	makemessage,
-	editmessage
+	tournaments: require('./commands/tournaments.js'),
+	ping: require('./commands/ping.js'),
+	roles: require('./commands/roles.js'),
+	addrole: require('./commands/addrole.js'),
+	removerole: require('./commands/removerole.js'),
+	clearroles: require('./commands/clearroles.js'),
+	makemessage: require('./commands/makemessage.js'),
+	editmessage: require('./commands/editmessage.js')
 }
