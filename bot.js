@@ -11,12 +11,12 @@ client.on('ready', function() {
 });
 
 // reaction roles code
-const reaction_bot = require("./reaction_roles.js")
+const reaction_bot = require("./reaction_roles.js");
 // check every event for reaction add/remove on the reaction role message.
 client.on("raw", event => {
-    const event_type = event.t
+    const event_type = event.t;
     if ((event_type === "MESSAGE_REACTION_ADD" || event_type === "MESSAGE_REACTION_REMOVE")) {
-        reaction_bot.run(client, event).catch(err => console.log(err))
+        reaction_bot.run(client, event).catch(err => console.log(err));
 	}
 })
 
@@ -24,7 +24,7 @@ client.on('message', function (msg){
 	if (msg.content.startsWith(conf.commandPrefix)) {
 		var args = Args(msg.content);
 		var cmd = args[0].substring(conf.commandPrefix.length);
-		args.shift()
+		args.shift();
 		if (commands[cmd])
 			commands[cmd](client, msg, args);
 
