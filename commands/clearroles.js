@@ -8,8 +8,10 @@ mongoose.connect(conf.mongodbs, { useNewUrlParser: true });
  * Clears all the roles on any message in the server
  */
 module.exports = async function (bot, message, args) {
+    // Richembed placeholder
+    var response = new Discord.RichEmbed()
     if (args[1] == "help") {
-        var help = new Discord.RichEmbed()
+        response
             .setColor("#FFFF00")
             .addField("Usage", "clearroles")
             .addField("More info", "Clears all the roles on any message in the server.");
@@ -29,15 +31,14 @@ module.exports = async function (bot, message, args) {
             return;
         }
         if (!rem) {
-            var noq = new Discord.RichEmbed()
+            response
                 .setColor("#F0FFF0")
                 .addField("Notification", "No roles were found in the database to remove.")
-            return message.channel.send(noq).then(r => r.delete(30000));
         } else {
-            var done = new Discord.RichEmbed()
+            response
                 .setColor("#00FFF0")
                 .addField("Notification", "All roles on all messages were deleted from the database.")
-            return message.channel.send(done).then(r => r.delete(30000));
         }
+        return message.channel.send(response).then(r => r.delete(30000));
     })
 }

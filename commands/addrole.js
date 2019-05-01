@@ -34,6 +34,7 @@ module.exports = async function (bot, message, args) {
         emoji: args[2],
         role: message.mentions.roles.first()
     }
+    // channel_id placeholder
     var channel_id
     // message placeholder
     var msg
@@ -43,11 +44,10 @@ module.exports = async function (bot, message, args) {
     var channels = message.guild.channels;
     channels = channels.first(channels.array().length);
     // channels is now an arrray of all the channels in this server
-    var l = channels.length;
     // now keep looping through the text channels and try to fetch the message
-    for (var i = 0; i < l; i++) {
+    for (var i = 0, l = channels.length; i < l; i++) {
         if (channels[i].type == "text") {
-            good_message = await channels[i].fetchMessage(role_obj.m_id).catch(err => { console.log(err) });
+            var good_message = await channels[i].fetchMessage(role_obj.m_id).catch(err => { console.log(err) });
             // once message is found, react to it with the given emoji
             if (good_message) {
                 await good_message.react(role_obj.emoji).catch(err => { console.log(err) });
@@ -60,8 +60,8 @@ module.exports = async function (bot, message, args) {
         return message.channel.send(
             clean
                 .setColor("#FF0000")
-                .addField("Error", "No roles were mentioned in your command, please mention the role to add.")
-        ).then(r => r.delete(30000))
+                .addField("Error", "No roles were mentioned in your command, please mention the role to add."))
+            .then(r => r.delete(30000))
     }
     // check if there's an emoji already bound to that message with a role.
     reaction_message_model.findOne({
@@ -95,18 +95,34 @@ module.exports = async function (bot, message, args) {
                 // await for the user's reply for 60 seconds.
                 var eternity = await message.channel.awaitMessages(filter, { max: 1, time: 60000 }).then(async collected => {
                     if (!collected.first()) {
-                        msg.edit(clean.setColor("#FF0000").addField("Failture", "Command Timed Out")).then(m => m.delete(30000));
+                        clean
+                            .setColor("#FF0000")
+                            .addField("Failture", "Command Timed Out");
+                        msg.edit(clean)
+                            .then(m => m.delete(30000));
                         return false;
                     } else {
                         if (collected.first().content.toLowerCase() == "yes") {
                             msg.edit(new Discord.RichEmbed().setColor("#F0FFFA").addField("Information", "Emote will be overwritten, please wait"));
                             return true;
                         } else {
-                            msg.edit(clean.setColor("#FFFF00").addField("Information", "Command Cancelled.")).then(m => m.delete(30000));
+                            clean
+                                .setColor("#FFFF00")
+                                .addField("Information", "Command Cancelled.");
+                            msg.edit(clean)
+                                .then(m => m.delete(30000));
                             return false;
                         }
                     }
-                }).catch(r => { msg.edit(clean.setColor("#FFFF00").addField("Information", "Command Cancelled.")).then(m => m.delete(30000)); console.error; return false });
+                }).catch(function (r) {
+                    clean
+                        .setColor("#FFFF00")
+                        .addField("Information", "Command Cancelled.");
+                    msg.edit(clean)
+                        .then(m => m.delete(30000));
+                    console.log(r);
+                    return false;
+                });
                 if (!eternity) {
                     return;
                 }
