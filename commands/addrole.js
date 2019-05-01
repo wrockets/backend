@@ -121,7 +121,7 @@ module.exports = async (bot, message, args) => {
             let done = new Discord.RichEmbed()
             .setColor("#00FF0F")
             .addField("Success","Emote has been successfully added, use the command **roles** to view all the emojis/roles bounded to messages in the server.")
-            return await msg.edit(done).then(m => m.delete(30000))
+            return msg.edit(done).then(m => m.delete(30000))
         }
     })
 }
