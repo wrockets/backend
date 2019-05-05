@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports = async (bot, message, args) => {
-    if (!args[0] || args[0] == "help"){
+    if (!args[1] || args[1] == "help"){
         let help = new Discord.RichEmbed()
         .setColor("#FFFF00")
         .addField("Usage", "makemessage <channe_id> <message content>")
@@ -13,10 +13,7 @@ module.exports = async (bot, message, args) => {
             return m.delete(15000)
         })
     }
-    channel = message.guild.channels.find(f=>{
-        if(f.id == args[0])
-            return f
-    })
+    channel = message.guild.channels.find(f=>f.id===args[1])
     msg = message.toString().split(/ +/g).slice(2).join(" ")
     if(msg.startsWith("image")){
         msg = msg.toString().split(/ +/g).slice(1).join(" ")
