@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 const mongoose = require('mongoose');
 const conf = require('./conf.js');
-mongoose.connect(conf.mongodbs, { useNewUrlParser: true })
-const reaction_message_model = require("./models/reaction_roles_message.js")
+mongoose.connect(conf.mongodbs, { useNewUrlParser: true });
+const reaction_message_model = require("./models/reaction_roles_message.js");
 
 /**
  * @param {Discord.Client} bot discord client
