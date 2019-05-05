@@ -3,21 +3,16 @@ const conf = require('./conf.js');
 const DT = require('luxon').DateTime;
 const commands = require('./commands.js');
 const Args = require('string-argv');
-const reaction_bot = require("./reaction_roles.js");
+const user_join = require('./event_listeners/user_join.js');
+const role_update = require('./event_listeners/role_update.js');
+// const on_message = require('./event_listeners/message.js');
+const raw_event = require('./event_listeners/raw_event.js');
 
 const client = new Discord.Client();
 
 client.on('ready', function () {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-
-// check every event for reaction add/remove on the reaction role message.
-client.on("raw", function (event) {
-	const event_type = event.t;
-	if ((event_type === "MESSAGE_REACTION_ADD" || event_type === "MESSAGE_REACTION_REMOVE")) {
-		reaction_bot.run(client, event).catch(err => console.log(err));
-	}
-})
 
 client.on('message', function (msg) {
 	if (msg.content.startsWith(conf.commandPrefix)) {
@@ -29,5 +24,9 @@ client.on('message', function (msg) {
 			msg.reply("Sorry, I don't know that command");
 	}
 });
+
+raw_event(client);
+user_join(client);
+role_update(client);
 
 client.login(conf.botToken);
