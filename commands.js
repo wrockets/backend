@@ -6,5 +6,6 @@ module.exports = {
 	removerole: require('./commands/removerole.js'),
 	clearroles: require('./commands/clearroles.js'),
 	makemessage: require('./commands/makemessage.js'),
-	editmessage: require('./commands/editmessage.js')
+	editmessage: require('./commands/editmessage.js'),
+	logchannel: require('./commands/log_channel.js')
 }
