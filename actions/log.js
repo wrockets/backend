@@ -1,7 +1,15 @@
+const Discord = require('discord.js');
 const fs = require('fs');
 const path = './db/log_c.txt';
 
-module.exports = function (bot, guild_id, content) {
+module.exports = 
+/**
+ * Sends the content to the logging channel of the guild of the given guild_id if a logging channel exists in the db
+ * @param {Discord.Client} bot 
+ * @param {number} guild_id 
+ * @param {Discord.RichEmbed} content 
+ */
+function (bot, guild_id, content) {
     let data = JSON.parse(fs.readFileSync(path));
     if (!data[guild_id])
         return;
