@@ -16,10 +16,10 @@ module.exports = async function (bot, message, args) {
     }
     // check if bot has perms
     if (!message.guild.me.hasPermission("MOVE_MEMBERS")) {
-        noperm = new Discord.RichEmbed()
-            .setColor("#FF0000")
-            .addField("Error", "The bot currently doesn't have permissions.")
-        return message.reply(noperm).then(r => r.delete(30000))
+        message.reply("Bot doesn't have permission").then(async function (m) {
+            await message.delete()
+            return m.delete(15000)
+        })
     }
     var voice_channel = bot.channels.find(c => c.id === args[1] || c.name === args[1])
     if (!voice_channel)
