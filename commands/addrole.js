@@ -14,7 +14,7 @@ module.exports = async function (bot, message, args) {
             .setColor("#FFFF00")
             .addField("Usage", "addemo <message_id> <emote> <role>")
             .addField("More info", "Adds a new role to any message in the server.")
-        return message.channel.send(help).then(r => r.delete(30000))
+        return message.channel.send(help)
     }
     // check if command issuer has perms
     if (!message.member.hasPermission("MANAGE_ROLES")) {
