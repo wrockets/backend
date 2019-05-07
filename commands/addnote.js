@@ -14,7 +14,7 @@ module.exports =
         if (!user) {
             user = await message.guild.fetchMember(args[1]).catch(err => console.log(`Couldn't fetch user ${args[1]}\n`))
         }
-        let response = new Discord.RichEmbed()
+        var response = new Discord.RichEmbed()
         if (!user) {
             response
                 .setColor("#FF0000")
