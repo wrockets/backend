@@ -17,8 +17,8 @@ module.exports = function (bot, message, args) {
             return m.delete(15000);
         })
     }
-    let guild = message.guild;
-    let channel = guild.channels.find(c => c.id === args[1]);
+    var guild = message.guild;
+    var channel = guild.channels.find(c => c.id === args[1]);
     if (!channel) {
         response
             .setColor("#FF0000")
