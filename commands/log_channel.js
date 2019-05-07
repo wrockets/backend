@@ -12,7 +12,7 @@ module.exports = function (bot, message, args) {
         return message.channel.send(response)
     }
     if (!message.member.hasPermission("VIEW_AUDIT_LOG")) {
-        message.reply("You don't have permission").then(async m => {
+        message.reply("You don't have permission").then(async function (m) {
             await message.delete();
             return m.delete(15000);
         })
@@ -28,7 +28,7 @@ module.exports = function (bot, message, args) {
     if (!fs.existsSync(path)) {
         fs.writeFileSync(path, '{}');
     }
-    var data = JSON.parse(fs.readFileSync(path, 'utf8'));
+    var data = JSON.parse(fs.readFileSync(path, 'utf8')) || '';
     if (!data[guild.id]) {
         response
             .setColor("#00FFFF")
