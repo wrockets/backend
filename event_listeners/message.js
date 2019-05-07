@@ -1,3 +1,6 @@
+const conf = require('../conf.js')
+const commands = require('../commands.js');
+const Args = require('string-argv');
 module.exports = function (client) {
     client.on('message', function (msg) {
         if (msg.content.startsWith(conf.commandPrefix)) {
