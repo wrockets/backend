@@ -21,7 +21,7 @@ module.exports = async (bot, message, args) => {
             .addField("More info", "Shows all the roles on all the messages in the server.")
         return message.channel.send(response).then(r => r.delete(30000));
     }
-    let channels = message.guild.channels
+    var channels = message.guild.channels
     // find all the roles that can be added with reacting on any message in this server
     reaction_message_model.find({
         guildID: message.guild.id
