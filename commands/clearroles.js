@@ -15,7 +15,7 @@ module.exports = async function (bot, message, args) {
             .setColor("#FFFF00")
             .addField("Usage", "clearroles")
             .addField("More info", "Clears all the roles on any message in the server.");
-        return message.channel.send(help).then(r => r.delete(30000));
+        return message.channel.send(help)
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         message.reply("You don't have permission").then(async m => {
