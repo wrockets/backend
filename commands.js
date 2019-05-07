@@ -7,5 +7,6 @@ module.exports = {
 	clearroles: require('./commands/clearroles.js'),
 	makemessage: require('./commands/makemessage.js'),
 	editmessage: require('./commands/editmessage.js'),
-	logchannel: require('./commands/log_channel.js')
+	logchannel: require('./commands/log_channel.js'),
+	moveall: require('./commands/move_voice_all.js')
 }
