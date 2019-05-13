@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const path = './db/log_c.txt';
+const path = './db/log_c.json';
 
 module.exports =
     /**
@@ -9,19 +9,26 @@ module.exports =
      * @param {number} guild_id 
      * @param {Discord.RichEmbed} content 
      */
-    function (bot, guild_id, content) {
-        let c = fs.readFileSync(path, 'utf8');
+    function (bot, guild_id, content, type) {
+        const errmsg = `Couldn't find the ${type} log channel for server ${guild_id}, please add the logging channel to avoid losing more logs.`;
+        if (!fs.existsSync(path)) {
+            console.log(errmsg);
+            return;
+        }
+        var c = fs.readFileSync(path, 'utf8')
         if (!c || c === '')
             return;
-        let data = JSON.parse(c);
-        if (!data[guild_id])
+        var data = JSON.parse(c);
+        if (!data[guild_id] || !data[guild_id][type]) {
+            console.log(errmsg);
             return;
+        }
         // find the server
-        let temp = bot.guilds.find(g => g.id === guild_id);
+        var temp = bot.guilds.find(g => g.id === guild_id);
         // find the log channel of the server
-        temp = temp.channels.find(c => c.id === data[guild_id]);
+        temp = temp.channels.find(c => c.id === data[guild_id][type]);
         if (!temp) {
-            console.log(`Couldn't find the log channel for server ${guild_id}, please add the logging channel to avoid losing more logs.`);
+            console.log(errmsg);
             return;
         }
         // send the content to the channel
