@@ -8,17 +8,18 @@ module.exports =
                 new Discord.RichEmbed()
                     .setColor("#FFFF00")
                     .addField("Usage", "addnote <ID/@mention> <note>")
-            )
+            );
         }
-        var user = message.mentions.members.first();
-        if (!user) {
-            user = await message.guild.fetchMember(args[1]).catch(err => console.log(`Couldn't fetch user ${args[1]}\n`))
+        if (!message.member.hasPermission("KICK_MEMBERS") && !message.member.hasPermission("ADMINISTRATOR")) {
+            await message.delete();
+            return message.reply("You don't have permission");
         }
-        var response = new Discord.RichEmbed()
+        var user = message.mentions.members.first() || message.guild.members.find(m => m.id === args[1] || m.displayName === args[1] || m.user.name === args[1])
         if (!user) {
-            response
+            var response = new Discord.RichEmbed()
                 .setColor("#FF0000")
-                .addField("Error", "Couldn't find a user with the given information, please mention the user or provide their ID")
+                .addField("Error", `Couldn't find the user ${args[1]}, please mention the user or provide their ID`);
+            console.log(`Couldn't fetch user ${args[1]}\n`);
             return message.reply(response);
         }
         var note = args.slice(2).join(" ")
@@ -26,10 +27,10 @@ module.exports =
             fs.writeFileSync(path, '{}');
         }
         var data = JSON.parse(fs.readFileSync(path, 'utf8'))
-        if (data[user.id]) {
-            data[user.id].push(note)
+        if (data[message.guild.id][user.id]) {
+            data[message.guild.id][user.id].push(note)
         } else {
-            data[user.id] = [note]
+            data[message.guild.id][user.id] = [note]
         }
         fs.writeFileSync(path, JSON.stringify(data));
         response
