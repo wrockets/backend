@@ -7,8 +7,10 @@ module.exports = {
 	clearroles: require('./commands/clearroles.js'),
 	makemessage: require('./commands/makemessage.js'),
 	editmessage: require('./commands/editmessage.js'),
-	logchannel: require('./commands/log_channel.js'),
+	addlogchannel: require('./commands/add_log_channel.js'),
 	moveall: require('./commands/move_voice_all.js'),
 	addnote: require('./commands/addnote.js'),
-	viewnotes: require('./commands/viewnotes.js')
+	viewnotes: require('./commands/viewnotes.js'),
+	mute: require('./commands/mute.js'),
+	unmute: require('./commands/unmute.js')
 }
