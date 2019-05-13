@@ -16,7 +16,7 @@ module.exports = async (bot, message, args) => {
             .setColor("#FFFF00")
             .addField("Usage", "removerole <message_id> <role>/<emoji>")
             .addField("More info", "*Has 2 usages*:\nIf a role/emoji is provided, removed that role/emoji from the specified message,\n-If no role/emoji provdided, removes all the roles/emojis from the specified message.")
-        return message.channel.send(response).then(r => r.delete(30000))
+        return message.channel.send(response)
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         message.reply("You don't have permission").then(async m => {
