@@ -4,7 +4,7 @@ module.exports = async function (bot, message, args) {
     if (!args[1] || args[1] == "help") {
         let help = new Discord.RichEmbed()
             .setColor("#FFFF00")
-            .addField("Usage", "makemessage <channe_id> <message content>")
+            .addField("Usage", "makemessage <channe_id> <message_content>")
         return message.channel.send(help)
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) {
