@@ -1,13 +1,13 @@
 const Discord = require("discord.js")
 
 module.exports = async function (bot, message, args) {
-    if (!args[1] || args[1] == "help") {
+    if (!args[2] || args[1] == "help") {
         let help = new Discord.RichEmbed()
             .setColor("#FFFF00")
             .addField("Usage", "makemessage <channe_id> <message_content>")
         return message.channel.send(help)
     }
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
+    if (!message.member.hasPermission("MANAGE_CHANNELS")) {
         message.reply("You don't have permission").then(async m => {
             await message.delete()
             return m.delete(15000)
