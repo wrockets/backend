@@ -24,6 +24,12 @@ module.exports = async (bot, message, args) => {
             return m.delete(15000)
         })
     }
+    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
+        message.reply("Bot doesn't have permission").then(async m => {
+            await message.delete()
+            return m.delete(15000)
+        })
+    }
     var message_id = args[1];
     if (!args[2]) {
         // remove the whole record that includes this message
