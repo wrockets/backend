@@ -1,18 +1,19 @@
-Discord = require('discord.js');
-fs = require('fs');
-path = './db/notes.txt';
+const Discord = require('discord.js');
+const fs = require('fs');
+const path = './db/notes.txt';
+
 module.exports =
     async function (bot, message, args) {
+        var response = new Discord.RichEmbed();
         if (!args[2] || args[1] === 'help') {
-            return message.channel.send(
-                new Discord.RichEmbed()
-                    .setColor("#FFFF00")
-                    .addField("Usage", "addnote <ID/@mention> <note>")
-            );
+            response
+                .setColor("#FFFF00")
+                .addField("Usage", "addnote <ID/@mention> <note>")
+            return message.channel.send(response);
         }
-        if (!message.member.hasPermission("KICK_MEMBERS") && !message.member.hasPermission("ADMINISTRATOR")) {
-            await message.delete();
-            return message.reply("You don't have permission");
+        if (!message.member.hasPermissions('VIEW_AUDIT_LOG')) {
+            message.reply("You don't have permission");
+            return message.delete();
         }
         var user = message.mentions.members.first() || message.guild.members.find(m => m.id === args[1] || m.displayName === args[1] || m.user.name === args[1])
         if (!user) {
@@ -28,9 +29,9 @@ module.exports =
         }
         var data = JSON.parse(fs.readFileSync(path, 'utf8'))
         if (data[message.guild.id][user.id]) {
-            data[message.guild.id][user.id].push(note)
+            data[message.guild.id][user.id].push(note);
         } else {
-            data[message.guild.id][user.id] = [note]
+            data[message.guild.id][user.id] = [note];
         }
         fs.writeFileSync(path, JSON.stringify(data));
         response

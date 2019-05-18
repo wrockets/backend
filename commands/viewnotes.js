@@ -1,7 +1,7 @@
-fs = require('fs');
-Discord = require('discord.js');
-path = './db/notes.json';
-hutil = require('../utilities/hutil.js')
+const fs = require('fs');
+const Discord = require('discord.js');
+const path = './db/notes.json';
+const hutil = require('../utilities/hutil.js')
 module.exports =
     async function (bot, message, args) {
         var response = new Discord.RichEmbed()
@@ -11,7 +11,11 @@ module.exports =
                 .addField("Usage", "viewnotes <ID/@mention> <note>")
             return message.channel.send(response)
         }
-        var user = message.mentions.members.first() || message.guild.memebers.find(m.id === args[1] || m.displayName === args[1]);
+        if (!message.member.hasPermissions('VIEW_AUDIT_LOG')) {
+            message.reply("You don't have permission");
+            return message.delete();
+        }
+        var user = message.mentions.members.first() || message.guild.memebers.find(m.id === args[1] || m.displayName === args[1] || m.user.name === args[1]);
         var notes;
         if (!user) {
             console.log(`Couldn't fetch user ${args[1]}\n`);
