@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 module.exports = async (bot, message, args) => {
     // Richembed placeholder
     var response = new Discord.RichEmbed();
-    if (args[1] == "help") {
+    if (!args[2] || args[1] == "help") {
         response
             .setColor("#FFFF00")
-            .addField("Usage", "editmessage <message_id> <message content>")
-        return message.channel.send(response).then(r => r.delete(30000));
+            .addField("Usage", "editmessage <message_id> <message_content>")
+        return message.channel.send(response);
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         message.reply("You don't have permission").then(async m => {
