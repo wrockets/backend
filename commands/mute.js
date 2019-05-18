@@ -71,7 +71,7 @@ module.exports =
                 .addField("Usage", "mute <user> (period)");
             return message.channel.send(response);
         }
-        if (!message.member.hasPermission("MANAGE_ROLES") && !message.member.hasPermission("ADMINISTRATOR")) {
+        if (!message.member.hasPermission("MANAGE_ROLES")) {
             await message.delete();
             return message.reply("You don't have permission");
         }
@@ -79,7 +79,7 @@ module.exports =
             await message.delete();
             return message.reply("Bot doesn't have permission");
         }
-        var rn = new Date()
+        var rn = new Date();
         var member = message.mentions.members.first() || message.guild.members.find(m.id === args[1] || m.displayName === args[1]);
         if (!member) {
             console.log(`Couldn't find member ${args[1]} in server ${message.guild}`)
@@ -95,8 +95,8 @@ module.exports =
             .setColor("#FFA500")
             .setDescription(
                 `**ACTION:** Mute user\n**TARGET:** ${member} (${member.displayName}) (${member.id})\n` +
-                `**EXECUTOR:** ${message.member} (${message.member.displayName}) (${message.member.id})\n`)
-            .setFooter(`**DATE/TIME:** ${rn.getUTCFullYear()}-${rn.getUTCMonth() + 1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`);
+                `**EXECUTER:** ${message.member} (${message.member.displayName}) (${message.member.id})\n`)
+            .setFooter(`DATE/TIME: ${rn.getUTCFullYear()}-${rn.getUTCMonth() + 1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`);
         if (args[2] && ms(args[2])) {
             setTimeout(function () {
                 // copy the args to a new array
