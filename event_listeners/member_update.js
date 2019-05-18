@@ -31,13 +31,13 @@ module.exports = function (bot) {
 			else
 				temp = 'add';
 			action_data += `**ACTION:** ${temp} role\n`;
-			difference.forEach(function(r){
-				action_data += `**ROLE ${difference.indexOf(r)+1}:** <@&${r}>\n`;
+			difference.forEach(function (r) {
+				action_data += `**ROLE ${difference.indexOf(r) + 1}:** <@&${r}>\n`;
 			})
 			audit_logs = await audit_logs;
 			audit_log_entry = audit_logs.entries.filter(e => e.action === 'MEMBER_ROLE_UPDATE').first();
 			executor = audit_log_entry.executor;
-			if(executor.bot){
+			if (executor.bot) {
 				return
 			}
 		}
@@ -51,7 +51,8 @@ module.exports = function (bot) {
 		}
 		let response = new Discord.RichEmbed()
 			.setColor("#00FFFF")
-			.setDescription(`${action_data}**EXECUTOR:** ${executor} (${executor.id})\n**TARGET USER:** ${old.user} (${old.user.id})\n**DATE/TIME: **${rn.getUTCFullYear()}-${rn.getUTCMonth()+1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`);
+			.setDescription(`${action_data}**EXECUTER:** ${executor} (${executor.id})\n**TARGET USER:** ${old.user} (${old.user.id})\n`)
+			.setFooter(`**DATE/TIME: **${rn.getUTCFullYear()}-${rn.getUTCMonth() + 1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`);
 		log(bot, old.guild.id, response, 'member_update');
 	})
 }

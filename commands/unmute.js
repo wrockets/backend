@@ -23,12 +23,12 @@ module.exports =
             console.log(`No Member`)
         }
         add_muted_roles(member);
-        setTimeout(c => { member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() === "mute")) }, 1000);
+        setTimeout(c => { member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() === 'mute')) }, 1000);
         var response = new Discord.RichEmbed()
             .setColor("#FFA500")
             .setDescription(
                 `**ACTION:** Mute user\n**TARGET:** ${member} (${member.displayName}) (${member.id})\n` +
-                `**EXECUTOR:** ${message.member} (${message.member.displayName}) (${message.member.id})\n` +
-                `**DATE/TIME:** ${rn.getUTCFullYear()}-${rn.getUTCMonth() + 1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`)
-        log(bot, message.guild.id, response, 'mute')
+                `**EXECUTOR:** ${message.member} (${message.member.displayName}) (${message.member.id})\n`)
+            .setFooter(`**DATE/TIME:** ${rn.getUTCFullYear()}-${rn.getUTCMonth() + 1}-${rn.getUTCDay()}, ${rn.getUTCHours()}:${rn.getUTCMinutes()}:${rn.getUTCSeconds()}`)
+        log(bot, message.guild.id, response, 'unmute')
     }
