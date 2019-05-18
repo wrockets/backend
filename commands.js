@@ -12,5 +12,9 @@ module.exports = {
 	addnote: require('./commands/addnote.js'),
 	viewnotes: require('./commands/viewnotes.js'),
 	mute: require('./commands/mute.js'),
-	unmute: require('./commands/unmute.js')
+	unmute: require('./commands/unmute.js'),
+	ban: require('./commands/ban.js'),
+	unban: require('./commands/unban.js'),
+	softban: require('./commands/softban.js'),
+	welcome_message: require('./commands/welome_message.js')
 }
