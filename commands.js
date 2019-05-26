@@ -1,7 +1,20 @@
-const tournaments = require('./commands/tournaments.js');
-const ping = require('./commands/ping.js');
-
 module.exports = {
-	tournaments,
-	ping
+	tournaments: require('./commands/tournaments.js'),
+	ping: require('./commands/ping.js'),
+	roles: require('./commands/roles.js'),
+	addrole: require('./commands/addrole.js'),
+	removerole: require('./commands/removerole.js'),
+	clearroles: require('./commands/clearroles.js'),
+	makemessage: require('./commands/makemessage.js'),
+	editmessage: require('./commands/editmessage.js'),
+	addlogchannel: require('./commands/add_log_channel.js'),
+	moveall: require('./commands/move_voice_all.js'),
+	addnote: require('./commands/addnote.js'),
+	viewnotes: require('./commands/viewnotes.js'),
+	mute: require('./commands/mute.js'),
+	unmute: require('./commands/unmute.js'),
+	ban: require('./commands/ban.js'),
+	unban: require('./commands/unban.js'),
+	softban: require('./commands/softban.js'),
+	welcome_message: require('./commands/welome_message.js')
 }
