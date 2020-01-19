@@ -3,6 +3,7 @@ const conf     = require('./conf.js');
 const DT       = require('luxon').DateTime;
 const commands = require('./commands.js');
 const Args     = require('string-argv');
+const Api      = require('./api/main.js');
 
 const client = new Discord.Client();
 
@@ -24,3 +25,5 @@ client.on('message', function (msg){
 });
 
 client.login(conf.botToken);
+
+Api.start();
