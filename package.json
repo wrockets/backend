@@ -19,7 +19,7 @@
   "homepage": "https://github.com/wrockets/backend#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "luxon": "^1.11.4",
     "silica-graphql-client": "^0.0.1",
     "string-argv": "^0.1.1"
